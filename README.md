@@ -1,1 +1,0 @@
-# HitProtein1
