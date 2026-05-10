@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HitProtein — Fuel Your Gains</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --hp-black: #0a0a0a;
+    --hp-white: #f5f3ef;
+    --hp-red: #e8321a;
+    --hp-red-dark: #b8270f;
+    --hp-gray: #1a1a1a;
+    --hp-gray-mid: #2e2e2e;
+    --hp-gray-light: #888;
+    --hp-accent: #ff5c3a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--hp-black);
+    color: var(--hp-white);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 70px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--hp-red);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    top: 4px; left: 6px;
+  }
+  .logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 3px;
+    background: #fff;
+    bottom: 8px; left: 12px;
+    border-radius: 2px;
+  }
+
+  .logo-bar {
+    position: absolute;
+    width: 28px; height: 3px;
+    background: #fff;
+    top: 14px; left: 5px;
+    border-radius: 2px;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--hp-white);
+  }
+
+  .logo-text span { color: var(--hp-red); }
+
+  nav ul {
+    list-style: none;
+    display: flex; gap: 36px;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    color: rgba(245,243,239,0.7);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--hp-white); }
+
+  .nav-cta {
+    background: var(--hp-red);
+    color: #fff !important;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--hp-red-dark) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 70% 50%, rgba(232,50,26,0.12) 0%, transparent 70%),
+      linear-gradient(160deg, #0a0a0a 50%, #140a08 100%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 70% 50%, black, transparent);
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,50,26,0.15);
+    border: 1px solid rgba(232,50,26,0.3);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--hp-accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--hp-accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 130px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 .red { color: var(--hp-red); }
+
+  .hero p {
+    font-size: 18px;
+    color: rgba(245,243,239,0.65);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 44px;
+    font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--hp-red);
+    color: #fff;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--hp-red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232,50,26,0.35);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--hp-white);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .hero-stats {
+    display: flex; gap: 48px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--hp-white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: rgba(245,243,239,0.5);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* floating visual */
+  .hero-visual {
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 45%;
+    height: 80%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-visual-inner {
+    width: 340px; height: 440px;
+    position: relative;
+  }
+
+  .product-showcase {
+    position: absolute;
+    background: var(--hp-gray);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-weight: 600;
+  }
+
+  .ps-main {
+    width: 220px; height: 300px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    background: linear-gradient(145deg, #1f1f1f, #141414);
+    border-color: rgba(232,50,26,0.3);
+  }
+
+  .ps-left {
+    width: 140px; height: 200px;
+    top: 50%; left: -40px;
+    transform: translateY(-50%) rotate(-8deg);
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  .ps-right {
+    width: 140px; height: 200px;
+    top: 50%; right: -40px;
+    transform: translateY(-50%) rotate(8deg);
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  .product-emoji {
+    font-size: 64px;
+    margin-bottom: 12px;
+    filter: saturate(0) brightness(1.2);
+  }
+
+  .ps-main .product-emoji { filter: none; font-size: 80px; }
+
+  .product-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: rgba(245,243,239,0.7);
+  }
+
+  .ps-main .product-label {
+    font-size: 22px;
+    color: var(--hp-white);
+  }
+
+  .price-badge {
+    margin-top: 8px;
+    background: var(--hp-red);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 48px; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--hp-red);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: rgba(245,243,239,0.55);
+    font-weight: 300;
+    max-width: 520px;
+    line-height: 1.65;
+  }
+
+  /* ── CATEGORIES ── */
+  .categories { background: var(--hp-gray); }
+
+  .cat-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 56px;
+    gap: 32px;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cat-card {
+    background: var(--hp-black);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 36px 28px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--hp-red);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .cat-card:hover { border-color: rgba(232,50,26,0.3); transform: translateY(-4px); }
+  .cat-card:hover::before { transform: scaleX(1); }
+
+  .cat-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .cat-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .cat-desc {
+    font-size: 14px;
+    color: rgba(245,243,239,0.5);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .cat-count {
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--hp-red);
+    letter-spacing: 1px;
+  }
+
+  /* ── PRODUCTS ── */
+  #productos { background: var(--hp-black); }
+
+  .products-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px;
+  }
+
+  .filter-tabs {
+    display: flex; gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .tab {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(245,243,239,0.6);
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab:hover { border-color: rgba(255,255,255,0.3); color: var(--hp-white); }
+  .tab.active { background: var(--hp-red); border-color: var(--hp-red); color: #fff; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .product-card {
+    background: var(--hp-gray);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    border-color: rgba(232,50,26,0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.5);
+  }
+
+  .product-img {
+    background: linear-gradient(145deg, #222, #181818);
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 72px;
+    position: relative;
+  }
+
+  .badge-new {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--hp-red);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .badge-hot {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: #f5a623;
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .product-info { padding: 20px; }
+
+  .product-category {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--hp-red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .product-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .product-variant {
+    font-size: 13px;
+    color: rgba(245,243,239,0.45);
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .product-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .product-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--hp-white);
+    letter-spacing: 1px;
+  }
+
+  .product-old {
+    font-size: 14px;
+    color: rgba(245,243,239,0.35);
+    text-decoration: line-through;
+    margin-left: 6px;
+    font-weight: 300;
+  }
+
+  .add-btn {
+    width: 38px; height: 38px;
+    background: var(--hp-red);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .add-btn:hover { background: var(--hp-red-dark); transform: scale(1.05); }
+
+  /* ── FLAVORS / BARS ── */
+  .bars-section { background: var(--hp-gray); }
+
+  .flavors-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 64px;
+  }
+
+  .flavor-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .flavor-card {
+    border-radius: 14px;
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: 2px solid transparent;
+  }
+
+  .flavor-card:hover { transform: scale(1.05); }
+  .flavor-card.active { border-color: rgba(255,255,255,0.4); }
+
+  .flavor-emoji { font-size: 36px; }
+
+  .flavor-name {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .flavor-price {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .flavor-choc { background: linear-gradient(145deg, #3d1e0a, #2a1208); }
+  .flavor-van { background: linear-gradient(145deg, #2e2a1a, #1e1c10); }
+  .flavor-fresa { background: linear-gradient(145deg, #2d0f14, #1f0a0e); }
+  .flavor-cookies { background: linear-gradient(145deg, #1a1a1a, #111); }
+  .flavor-limon { background: linear-gradient(145deg, #1e2a0a, #141d07); }
+  .flavor-caramel { background: linear-gradient(145deg, #2d1f08, #1e1508); }
+
+  .bars-info h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+
+  .bars-info p {
+    font-size: 16px;
+    color: rgba(245,243,239,0.55);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .macro-pills {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .macro-pill {
+    background: rgba(232,50,26,0.12);
+    border: 1px solid rgba(232,50,26,0.25);
+    color: var(--hp-accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 100px;
+  }
+
+  /* ── CLOTHING ── */
+  #ropa { background: var(--hp-black); }
+
+  .clothing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .clothing-card {
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .clothing-card:hover { transform: scale(1.02); }
+
+  .clothing-img {
+    height: 320px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 88px;
+    position: relative;
+  }
+
+  .c-red { background: linear-gradient(145deg, #2a0a05, #1a0602); }
+  .c-dark { background: linear-gradient(145deg, #0f0f0f, #1a1a1a); }
+  .c-gray-c { background: linear-gradient(145deg, #1a1a1a, #252525); }
+
+  .clothing-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    padding: 32px 24px 24px;
+  }
+
+  .clothing-type {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--hp-red);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .clothing-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+
+  .clothing-desc {
+    font-size: 13px;
+    color: rgba(245,243,239,0.55);
+    margin-bottom: 12px;
+  }
+
+  .clothing-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .clothing-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+  }
+
+  .color-dots { display: flex; gap: 6px; }
+
+  .dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+
+  /* ── BANNER ── */
+  .promo-banner {
+    background: var(--hp-red);
+    padding: 80px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .promo-banner::before {
+    content: 'HITPROTEIN';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 220px;
+    color: rgba(255,255,255,0.06);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    letter-spacing: 12px;
+    pointer-events: none;
+  }
+
+  .promo-banner h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .promo-banner p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    max-width: 440px;
+    margin: 0 auto 36px;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .btn-white {
+    background: #fff;
+    color: var(--hp-red);
+    border: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+  }
+
+  .btn-white:hover { transform: scale(1.04); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+
+  /* ── FEATURES ── */
+  .features {
+    background: var(--hp-gray);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+
+  .feature {
+    padding: 48px 36px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+
+  .feature:last-child { border-right: none; }
+
+  .feature-icon {
+    font-size: 32px;
+    width: 56px; height: 56px;
+    background: rgba(232,50,26,0.12);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .feature h3 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .feature p {
+    font-size: 14px;
+    color: rgba(245,243,239,0.5);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonios { background: var(--hp-black); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+
+  .review-card {
+    background: var(--hp-gray);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .stars {
+    color: #f5a623;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .review-text {
+    font-size: 15px;
+    color: rgba(245,243,239,0.75);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .reviewer {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .reviewer-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--hp-red);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff;
+  }
+
+  .reviewer-name { font-weight: 600; font-size: 14px; }
+  .reviewer-detail { font-size: 12px; color: rgba(245,243,239,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    padding: 64px 48px 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    color: rgba(245,243,239,0.45);
+    line-height: 1.7;
+    margin-top: 16px;
+    font-weight: 300;
+    max-width: 260px;
+  }
+
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.4);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .footer-col a {
+    text-decoration: none;
+    font-size: 14px;
+    color: rgba(245,243,239,0.6);
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .footer-col a:hover { color: var(--hp-white); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 32px;
+    font-size: 13px;
+    color: rgba(245,243,239,0.3);
+  }
+
+  .social-links { display: flex; gap: 16px; }
+  .social-link {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.2s;
+  }
+  .social-link:hover { background: var(--hp-red); }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--hp-red);
+    overflow: hidden;
+    height: 40px;
+    display: flex; align-items: center;
+  }
+
+  .ticker-inner {
+    display: flex; gap: 0;
+    animation: ticker 25s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    padding: 0 40px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .ticker-sep {
+    color: rgba(255,255,255,0.4);
+    padding: 0 8px;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── CART TOAST ── */
+  .cart-toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: #fff;
+    color: #0a0a0a;
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    transform: translateY(120px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 200;
+  }
+
+  .cart-toast.show { transform: translateY(0); }
+  .toast-icon { font-size: 20px; }
+
+  .cart-count {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: var(--hp-red);
+    color: #fff;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    display: none;
+  }
+
+  .nav-cart { position: relative; }
+
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-visual { display: none; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .features { grid-template-columns: 1fr 1fr; }
+    section { padding: 60px 24px; }
+    .clothing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <div class="logo-bar"></div>
+    </div>
+    <span class="logo-text">HIT<span>PROTEIN</span></span>
+  </a>
+  <ul>
+    <li><a href="#suplementos">Suplementos</a></li>
+    <li><a href="#barritas">Barritas</a></li>
+    <li><a href="#ropa">Ropa</a></li>
+    <li><a href="#accesorios">Accesorios</a></li>
+    <li><a href="#testimonios">Reviews</a></li>
+    <li><a href="#suplementos" class="nav-cta">Comprar</a></li>
+  </ul>
+  <div class="nav-cart" style="margin-left: 16px; font-size: 22px; cursor: pointer;" id="cartIcon">
+    🛒
+    <div class="cart-count" id="cartCount">0</div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker" style="margin-top: 70px;">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">ENVÍO GRATIS +40€</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">PROTEÍNA WHEY PREMIUM</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">CREATINA MICRONIZADA</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">PREENTRENO EXTREMO</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">ROPA TÉCNICA GYM</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">BARRITAS ENERGÉTICAS</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">ENVÍO GRATIS +40€</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">PROTEÍNA WHEY PREMIUM</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">CREATINA MICRONIZADA</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">PREENTRENO EXTREMO</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">ROPA TÉCNICA GYM</span><span class="ticker-sep">★</span>
+    <span class="ticker-item">BARRITAS ENERGÉTICAS</span><span class="ticker-sep">★</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🔥 Nueva temporada 2025</div>
+    <h1>SUPERA<br><span class="red">TUS</span><br>LÍMITES</h1>
+    <p>Suplementación premium, ropa técnica y nutrición deportiva diseñada para jóvenes que van en serio con su entrenamiento.</p>
+    <div class="hero-actions">
+      <a href="#suplementos" class="btn-primary">Ver productos</a>
+      <a href="#testimonios" class="btn-ghost">Ver reviews</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">50K+</div>
+        <div class="stat-label">Atletas activos</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Satisfacción</div>
+      </div>
+      <div>
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Valoración media</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-inner">
+      <div class="product-showcase ps-left">
+        <span class="product-emoji">💊</span>
+        <span class="product-label">CREATINA</span>
+      </div>
+      <div class="product-showcase ps-main">
+        <span class="product-emoji">💪</span>
+        <span class="product-label">WHEY PROTEIN</span>
+        <div class="price-badge">29,99€</div>
+      </div>
+      <div class="product-showcase ps-right">
+        <span class="product-emoji">⚡</span>
+        <span class="product-label">PRE-WO</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon">🚀</div>
+    <h3>Envío Express</h3>
+    <p>Recibe tu pedido en 24–48h. Gratis en pedidos superiores a 40€.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🧬</div>
+    <h3>Calidad Certificada</h3>
+    <p>Fórmulas testadas en laboratorio con ingredientes de máxima pureza.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">💳</div>
+    <h3>Pago Seguro</h3>
+    <p>Tarjeta, Bizum y PayPal. Encriptación SSL 256-bit en todos los pagos.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🔄</div>
+    <h3>30 días de garantía</h3>
+    <p>Devoluciones gratuitas sin preguntas si no estás satisfecho.</p>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categorias">
+  <div class="cat-header fade-up">
+    <div>
+      <div class="section-eyebrow">Explorar</div>
+      <div class="section-title">NUESTRAS<br>CATEGORÍAS</div>
+    </div>
+    <div class="section-sub">Todo lo que necesitas para entrenar al 100%, desde la suplementación hasta la ropa técnica.</div>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card fade-up" onclick="scrollTo('#suplementos')">
+      <span class="cat-icon">🧪</span>
+      <div class="cat-name">Suplementos</div>
+      <div class="cat-desc">Proteína, creatina, preentreno y aminoácidos de máxima calidad.</div>
+      <div class="cat-count">12 productos →</div>
+    </div>
+    <div class="cat-card fade-up" onclick="scrollTo('#barritas')">
+      <span class="cat-icon">🍫</span>
+      <div class="cat-name">Barritas</div>
+      <div class="cat-desc">Barritas energéticas y proteicas en múltiples sabores irresistibles.</div>
+      <div class="cat-count">18 sabores →</div>
+    </div>
+    <div class="cat-card fade-up" onclick="scrollTo('#ropa')">
+      <span class="cat-icon">👕</span>
+      <div class="cat-name">Ropa Gym</div>
+      <div class="cat-desc">Ropa técnica transpirable para entrenar con estilo y comodidad.</div>
+      <div class="cat-count">24 prendas →</div>
+    </div>
+    <div class="cat-card fade-up" onclick="scrollTo('#accesorios')">
+      <span class="cat-icon">🧴</span>
+      <div class="cat-name">Accesorios</div>
+      <div class="cat-desc">Botellas shaker, mochilas de gym y complementos para entrenar.</div>
+      <div class="cat-count">8 productos →</div>
+    </div>
+    <div class="cat-card fade-up">
+      <span class="cat-icon">🔥</span>
+      <div class="cat-name">Ofertas Flash</div>
+      <div class="cat-desc">Descuentos de hasta el 40% en productos seleccionados cada semana.</div>
+      <div class="cat-count">Ver ofertas →</div>
+    </div>
+    <div class="cat-card fade-up">
+      <span class="cat-icon">🎁</span>
+      <div class="cat-name">Packs & Bundles</div>
+      <div class="cat-desc">Combina suplementos y ahorra hasta un 25% en packs seleccionados.</div>
+      <div class="cat-count">Ver packs →</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="suplementos">
+  <div class="products-header fade-up">
+    <div>
+      <div class="section-eyebrow">Lo más vendido</div>
+      <div class="section-title">SUPLEMENTOS</div>
+    </div>
+  </div>
+  <div class="filter-tabs fade-up">
+    <button class="tab active" onclick="filterProducts('all', this)">Todos</button>
+    <button class="tab" onclick="filterProducts('proteina', this)">Proteína</button>
+    <button class="tab" onclick="filterProducts('creatina', this)">Creatina</button>
+    <button class="tab" onclick="filterProducts('preentreno', this)">Preentreno</button>
+  </div>
+  <div class="products-grid" id="productsGrid">
+
+    <div class="product-card fade-up" data-cat="proteina">
+      <div class="product-img">
+        💪
+        <div class="badge-hot">MÁS VENDIDO</div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Proteína</div>
+        <div class="product-name">Whey Protein Premium</div>
+        <div class="product-variant">Chocolate · 1kg · 33 servicios</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">29,99€</span>
+            <span class="product-old">39,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Whey Protein Premium')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up" data-cat="creatina">
+      <div class="product-img">
+        ⚗️
+        <div class="badge-new">NUEVO</div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Creatina</div>
+        <div class="product-name">Creatina Monohidrato</div>
+        <div class="product-variant">Sin sabor · 500g · 100 servicios</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">19,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Creatina Monohidrato')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up" data-cat="preentreno">
+      <div class="product-img">
+        ⚡
+        <div class="badge-hot">TOP RATED</div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Preentreno</div>
+        <div class="product-name">Pre-Workout XPLODE</div>
+        <div class="product-variant">Sandía · 300g · 30 servicios</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">34,99€</span>
+            <span class="product-old">44,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Pre-Workout XPLODE')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up" data-cat="proteina">
+      <div class="product-img">🥛</div>
+      <div class="product-info">
+        <div class="product-category">Proteína</div>
+        <div class="product-name">Proteína Vegana</div>
+        <div class="product-variant">Vainilla · 1kg · 30 servicios</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">32,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Proteína Vegana')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up" data-cat="proteina">
+      <div class="product-img">
+        🍦
+        <div class="badge-new">NUEVO</div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Proteína</div>
+        <div class="product-name">Whey Isolate Zero</div>
+        <div class="product-variant">Cookies & Cream · 2kg · 66 servicios</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">54,99€</span>
+            <span class="product-old">64,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Whey Isolate Zero')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up" data-cat="preentreno">
+      <div class="product-img">💥</div>
+      <div class="product-info">
+        <div class="product-category">Preentreno</div>
+        <div class="product-name">Cafeína + L-Teanina</div>
+        <div class="product-variant">200mg + 100mg · 60 cápsulas</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">14,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Cafeína + L-Teanina')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up" data-cat="creatina">
+      <div class="product-img">🔬</div>
+      <div class="product-info">
+        <div class="product-category">Creatina</div>
+        <div class="product-name">Creatina HCl Ultra</div>
+        <div class="product-variant">Sin hinchazón · 200g · 66 servicios</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">24,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Creatina HCl Ultra')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up" data-cat="proteina">
+      <div class="product-img">
+        🌙
+        <div class="badge-new">NUEVO</div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Proteína</div>
+        <div class="product-name">Caseína Nocturna</div>
+        <div class="product-variant">Caramelo · 1kg · 28 servicios</div>
+        <div class="product-bottom">
+          <div>
+            <span class="product-price">36,99€</span>
+          </div>
+          <button class="add-btn" onclick="addToCart('Caseína Nocturna')">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BARRITAS -->
+<section class="bars-section" id="barritas">
+  <div class="section-eyebrow fade-up">Nutrición on-the-go</div>
+  <div class="flavors-showcase">
+    <div class="bars-info fade-up">
+      <h2>BARRITAS<br><span style="color:var(--hp-red)">PROTEICAS</span><br>Y ENERGÉTICAS</h2>
+      <p>Más de 18 sabores irresistibles. Alta proteína, bajo en azúcar y listas para llevar donde vayas. El snack perfecto para antes o después de entrenar.</p>
+      <div class="macro-pills">
+        <div class="macro-pill">20g Proteína</div>
+        <div class="macro-pill">Bajo en azúcar</div>
+        <div class="macro-pill">Sin gluten</div>
+        <div class="macro-pill">200 kcal</div>
+      </div>
+      <div style="display:flex; gap:16px; align-items:center; margin-bottom:12px;">
+        <span style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--hp-white);">2,99€</span>
+        <span style="color:rgba(245,243,239,0.4); font-size:14px;">por unidad</span>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="#" class="btn-primary">Pack 12 unid. — 29,99€</a>
+        <a href="#" class="btn-ghost">Pack 6 unid.</a>
+      </div>
+    </div>
+    <div class="flavor-cards fade-up">
+      <div class="flavor-card flavor-choc active">
+        <div class="flavor-emoji">🍫</div>
+        <div class="flavor-name">Chocolate Negro</div>
+        <div class="flavor-price" style="color:#f5a623;">2,99€</div>
+      </div>
+      <div class="flavor-card flavor-van">
+        <div class="flavor-emoji">🍦</div>
+        <div class="flavor-name">Vainilla Cremosa</div>
+        <div class="flavor-price" style="color:#f5e6a3;">2,99€</div>
+      </div>
+      <div class="flavor-card flavor-fresa">
+        <div class="flavor-emoji">🍓</div>
+        <div class="flavor-name">Fresa & Crema</div>
+        <div class="flavor-price" style="color:#ff8fa3;">2,99€</div>
+      </div>
+      <div class="flavor-card flavor-cookies">
+        <div class="flavor-emoji">🍪</div>
+        <div class="flavor-name">Cookies & Cream</div>
+        <div class="flavor-price" style="color:#ccc;">2,99€</div>
+      </div>
+      <div class="flavor-card flavor-limon">
+        <div class="flavor-emoji">🍋</div>
+        <div class="flavor-name">Limón Cheesecake</div>
+        <div class="flavor-price" style="color:#d4ff7a;">2,99€</div>
+      </div>
+      <div class="flavor-card flavor-caramel">
+        <div class="flavor-emoji">🍯</div>
+        <div class="flavor-name">Caramelo Salado</div>
+        <div class="flavor-price" style="color:#f5c16c;">2,99€</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESORIOS -->
+<section id="accesorios" style="background:var(--hp-black);">
+  <div class="section-eyebrow fade-up">Equipamiento</div>
+  <div class="section-title fade-up">ACCESORIOS GYM</div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:48px;">
+
+    <div class="product-card fade-up">
+      <div class="product-img" style="height:180px; font-size:60px;">🧴</div>
+      <div class="product-info">
+        <div class="product-category">Accesorios</div>
+        <div class="product-name">Shaker HitProtein Pro</div>
+        <div class="product-variant">700ml · Bola mezcladora · 5 colores</div>
+        <div class="product-bottom">
+          <span class="product-price">12,99€</span>
+          <button class="add-btn" onclick="addToCart('Shaker HitProtein Pro')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img" style="height:180px; font-size:60px;">
+        💧
+        <div class="badge-new">NUEVO</div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Accesorios</div>
+        <div class="product-name">Botella Térmica 1L</div>
+        <div class="product-variant">Acero inox · Frío 24h · Calor 12h</div>
+        <div class="product-bottom">
+          <span class="product-price">24,99€</span>
+          <button class="add-btn" onclick="addToCart('Botella Térmica 1L')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img" style="height:180px; font-size:60px;">🎒</div>
+      <div class="product-info">
+        <div class="product-category">Accesorios</div>
+        <div class="product-name">Mochila HitGym Bag</div>
+        <div class="product-variant">35L · Compartimento zapatos · Negro</div>
+        <div class="product-bottom">
+          <span class="product-price">39,99€</span>
+          <button class="add-btn" onclick="addToCart('Mochila HitGym Bag')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img" style="height:180px; font-size:60px;">🤝</div>
+      <div class="product-info">
+        <div class="product-category">Accesorios</div>
+        <div class="product-name">Guantes Gym Pro</div>
+        <div class="product-variant">Neopreno · Antideslizante · XS–XL</div>
+        <div class="product-bottom">
+          <span class="product-price">18,99€</span>
+          <button class="add-btn" onclick="addToCart('Guantes Gym Pro')">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROPA -->
+<section id="ropa">
+  <div class="section-eyebrow fade-up">Performance wear</div>
+  <div class="section-title fade-up">ROPA PARA<br><span style="color:var(--hp-red);">ENTRENAR</span></div>
+  <div class="section-sub fade-up" style="margin-top:12px;">Tejidos técnicos de alta compresión. Diseñados para moverse sin restricciones.</div>
+  <div class="clothing-grid">
+
+    <div class="clothing-card fade-up">
+      <div class="clothing-img c-dark">
+        👕
+      </div>
+      <div class="clothing-overlay">
+        <div class="clothing-type">Camisetas</div>
+        <div class="clothing-name">Camiseta Dry-Fit</div>
+        <div class="clothing-desc">Tejido transpirable · Secado rápido · XS–3XL</div>
+        <div class="clothing-bottom">
+          <span class="clothing-price">19,99€</span>
+          <div class="color-dots">
+            <div class="dot" style="background:#0a0a0a;"></div>
+            <div class="dot" style="background:#e8321a;"></div>
+            <div class="dot" style="background:#fff;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clothing-card fade-up">
+      <div class="clothing-img c-gray-c">
+        🩳
+      </div>
+      <div class="clothing-overlay">
+        <div class="clothing-type">Pantalones</div>
+        <div class="clothing-name">Jogger Training</div>
+        <div class="clothing-desc">Slim fit · Bolsillos · Anti-olor · S–XXL</div>
+        <div class="clothing-bottom">
+          <span class="clothing-price">34,99€</span>
+          <div class="color-dots">
+            <div class="dot" style="background:#2e2e2e;"></div>
+            <div class="dot" style="background:#1a1a2e;"></div>
+            <div class="dot" style="background:#0e1a0a;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clothing-card fade-up">
+      <div class="clothing-img c-red">
+        🧢
+      </div>
+      <div class="clothing-overlay">
+        <div class="clothing-type">Accesorios ropa</div>
+        <div class="clothing-name">Gorra HitProtein</div>
+        <div class="clothing-desc">Visera curva · Logo bordado · Talla única</div>
+        <div class="clothing-bottom">
+          <span class="clothing-price">16,99€</span>
+          <div class="color-dots">
+            <div class="dot" style="background:#e8321a;"></div>
+            <div class="dot" style="background:#0a0a0a;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clothing-card fade-up">
+      <div class="clothing-img c-dark">
+        🦺
+      </div>
+      <div class="clothing-overlay">
+        <div class="clothing-type">Chaquetas</div>
+        <div class="clothing-name">Hoodie Premium</div>
+        <div class="clothing-desc">Algodón 380gsm · Oversize · Kangaroo pocket</div>
+        <div class="clothing-bottom">
+          <span class="clothing-price">44,99€</span>
+          <div class="color-dots">
+            <div class="dot" style="background:#111;"></div>
+            <div class="dot" style="background:#888;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clothing-card fade-up">
+      <div class="clothing-img c-gray-c">
+        🧘
+      </div>
+      <div class="clothing-overlay">
+        <div class="clothing-type">Leggings</div>
+        <div class="clothing-name">Leggings Compresión</div>
+        <div class="clothing-desc">Alta compresión · Push-up · Sin costuras · XS–XL</div>
+        <div class="clothing-bottom">
+          <span class="clothing-price">29,99€</span>
+          <div class="color-dots">
+            <div class="dot" style="background:#0a0a0a;"></div>
+            <div class="dot" style="background:#e8321a;"></div>
+            <div class="dot" style="background:#2e2e4a;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clothing-card fade-up">
+      <div class="clothing-img c-red" style="position:relative;">
+        👟
+        <div style="position:absolute;top:12px;left:12px;background:var(--hp-red);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;">BEST SELLER</div>
+      </div>
+      <div class="clothing-overlay">
+        <div class="clothing-type">Calcetines</div>
+        <div class="clothing-name">Pack Calcetines x6</div>
+        <div class="clothing-desc">Acolchados · Anti-ampollas · Tallas 38–46</div>
+        <div class="clothing-bottom">
+          <span class="clothing-price">14,99€</span>
+          <div class="color-dots">
+            <div class="dot" style="background:#fff;"></div>
+            <div class="dot" style="background:#e8321a;"></div>
+            <div class="dot" style="background:#111;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <h2>PRIMERA COMPRA<br>10% DE DESCUENTO</h2>
+  <p>Usa el código HITGAIN10 en tu primer pedido y empieza tu transformación hoy mismo.</p>
+  <a href="#suplementos" class="btn-white">Empezar ahora</a>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonios">
+  <div class="section-eyebrow fade-up">Comunidad</div>
+  <div class="section-title fade-up">LO QUE DICEN<br>NUESTROS ATLETAS</div>
+  <div class="reviews-grid">
+
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"La Whey de HitProtein es la mejor que he probado. Se mezcla perfectamente y el sabor a chocolate es increíble. Noto la diferencia en la recuperación muscular."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AJ</div>
+        <div>
+          <div class="reviewer-name">Alejandro J.</div>
+          <div class="reviewer-detail">Powerlifter · Madrid</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Las barritas de caramelo salado están buenísimas. Por fin una marca que combina sabor real con macros decentes. Las pido en pack de 12 cada semana."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SG</div>
+        <div>
+          <div class="reviewer-name">Sara G.</div>
+          <div class="reviewer-detail">CrossFitter · Barcelona</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"El preentreno XPLODE es una bestia. Energía sin picos ni bajones. La ropa también mola mucho, el hoodie es muy cómodo para entrenar en invierno."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">MR</div>
+        <div>
+          <div class="reviewer-name">Miguel R.</div>
+          <div class="reviewer-detail">Bodybuilder · Valencia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="stars">★★★★☆</div>
+      <div class="review-text">"Llevo 3 meses tomando la creatina y los resultados son muy notorios en fuerza y volumen. Los envíos siempre puntuales. Muy recomendable."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">LC</div>
+        <div>
+          <div class="reviewer-name">Laura C.</div>
+          <div class="reviewer-detail">Atleta fitness · Sevilla</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"El shaker es de los mejores que he tenido. No gotea, la bola mezcla perfecto y cabe bien en las taquillas del gym. Relación calidad-precio excelente."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">PV</div>
+        <div>
+          <div class="reviewer-name">Pablo V.</div>
+          <div class="reviewer-detail">Estudiante · Bilbao</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Soy vegana y la proteína vegana de vainilla es perfecta. Textura suave, sin grumitos y con buen perfil de aminoácidos. Al fin una opción real."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">IM</div>
+        <div>
+          <div class="reviewer-name">Irene M.</div>
+          <div class="reviewer-detail">Yoga & Fitness · Zaragoza</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <div class="logo-bar"></div>
+        </div>
+        <span class="logo-text">HIT<span>PROTEIN</span></span>
+      </a>
+      <p>Nutrición deportiva y ropa técnica para la nueva generación de atletas. Hecho en España, para el mundo.</p>
+      <div class="social-links" style="margin-top:24px;">
+        <a href="#" class="social-link">📸</a>
+        <a href="#" class="social-link">🎵</a>
+        <a href="#" class="social-link">▶️</a>
+        <a href="#" class="social-link">𝕏</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Productos</h4>
+      <ul>
+        <li><a href="#">Proteína Whey</a></li>
+        <li><a href="#">Creatina</a></li>
+        <li><a href="#">Preentreno</a></li>
+        <li><a href="#">Barritas</a></li>
+        <li><a href="#">Accesorios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ropa</h4>
+      <ul>
+        <li><a href="#">Camisetas</a></li>
+        <li><a href="#">Pantalones</a></li>
+        <li><a href="#">Hoodies</a></li>
+        <li><a href="#">Leggings</a></li>
+        <li><a href="#">Accesorios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Envíos</a></li>
+        <li><a href="#">Devoluciones</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Aviso legal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 HitProtein SL · Todos los derechos reservados</span>
+    <span>Hecho con 💪 en España</span>
+  </div>
+</footer>
+
+<!-- CART TOAST -->
+<div class="cart-toast" id="cartToast">
+  <span class="toast-icon">✅</span>
+  <span id="toastText">Producto añadido al carrito</span>
+</div>
+
+<script>
+let cartQty = 0;
+
+function addToCart(name) {
+  cartQty++;
+  const count = document.getElementById('cartCount');
+  count.style.display = 'flex';
+  count.textContent = cartQty;
+  document.getElementById('toastText').textContent = name + ' añadido';
+  const toast = document.getElementById('cartToast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card[data-cat]').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function scrollTo(selector) {
+  document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Flavor card selection
+document.querySelectorAll('.flavor-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.flavor-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
